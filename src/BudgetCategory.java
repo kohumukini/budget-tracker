@@ -27,7 +27,7 @@ public class BudgetCategory implements Comparable<BudgetCategory> {
 
     @Override
     public String toString() {
-        return "BudgetCategory [product=" + product + ", expectedCost=" + expectedCost + ", trueCost=" + trueCost + "]";
+        return "BudgetCategory [product: " + product + ", expectedCost: " + expectedCost + ", trueCost: " + trueCost + "]";
     }  
     
     public int compareTo(BudgetCategory other) {

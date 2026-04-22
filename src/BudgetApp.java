@@ -23,15 +23,16 @@ public class BudgetApp {
 
             // Consume \n after spent input 
             if(scan.hasNextLine()) scan.nextLine();
-
-            String limitString = String.format("$%.2f", limit);
-            String spentString = String.format("$%.2f", spent);
         }
 
         Collections.sort(budgetSheet, Collections.reverseOrder());
 
-        System.out.println(budgetSheet);
-        System.out.println(budgetDifference(budgetSheet)); 
+        for (BudgetCategory bc : budgetSheet) {
+            System.out.println(bc + "- Difference: " + bc.getDifference());  
+        }
+
+        System.out.println(String.format("Overspent: $%.2f", budgetDifference(budgetSheet))); 
+        System.out.println(String.format("Average Difference: $%.2f", avgDiff(budgetSheet))); 
     }
 
     /**
@@ -46,12 +47,19 @@ public class BudgetApp {
      * @param categories the budget categories with the spend
      * @return the total amount over/under budget
      */
-    public static int budgetDifference(List<BudgetCategory> categories) {
-        int sum = 0; 
+    public static double budgetDifference(List<BudgetCategory> categories) {
+        double sum = 0; 
 
         for (BudgetCategory category : categories) {
             sum += category.getDifference(); 
         }
         return sum; 
+    }
+
+    public static double avgDiff(List<BudgetCategory> cats) {
+        double average = budgetDifference(cats); 
+        average /= cats.size(); 
+
+        return Math.round(average * 100) / 100.0; 
     }
 }
