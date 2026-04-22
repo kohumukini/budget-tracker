@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
@@ -26,6 +27,8 @@ public class BudgetApp {
             String limitString = String.format("$%.2f", limit);
             String spentString = String.format("$%.2f", spent);
         }
+
+        Collections.sort(budgetSheet, Collections.reverseOrder());
 
         System.out.println(budgetSheet);
     }
